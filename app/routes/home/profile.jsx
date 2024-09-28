@@ -1,16 +1,11 @@
 import { Fragment, useState } from 'react'
-import profileImgLarge from '~/assets/profile-large.jpg'
-import profileImgPlaceholder from '~/assets/profile-placeholder.jpg'
-import profileImg from '~/assets/profile.jpg'
 import { Button } from '~/components/button'
 import { DecoderText } from '~/components/decoder-text'
 import { Divider } from '~/components/divider'
 import { Heading } from '~/components/heading'
-import { Image } from '~/components/image'
 import { Section } from '~/components/section'
 import { Text } from '~/components/text'
 import { Transition } from '~/components/transition'
-import { media } from '~/utils/style'
 import katakana from './katakana.svg'
 import styles from './profile.module.css'
 
@@ -70,23 +65,11 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   About me
                 </div>
               </div>
-              <div className={styles.image}>
-                <Image
-                  reveal
-                  delay={100}
-                  placeholder={profileImgPlaceholder}
-                  srcSet={`${profileImg} 480w, ${profileImgLarge} 960w`}
-                  width={960}
-                  height={1280}
-                  sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
-                />
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${katakana}#katakana-profile`} />
                 </svg>
               </div>
             </div>
-          </div>
         )}
       </Transition>
     </Section>

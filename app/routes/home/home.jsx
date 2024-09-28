@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Footer } from '~/components/footer'
+import Live2d from '~/components/live2d/live2d'
 import config from '~/config.json'
 import { baseMeta } from '~/utils/meta'
 import styles from './home.module.css'
@@ -35,12 +35,15 @@ export const meta = () => {
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
-  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
+  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);   
+
+
   const intro = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, details]; // Definisikan array sections di sini
+    const   
+ sections = [intro, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -53,23 +56,25 @@ export const Home = () => {
           }
         });
       },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+      { rootMargin: '0px 0px -10% 0px',   
+ threshold: 0.1 }
     );
 
     const indicatorObserver = new IntersectionObserver(
       ([entry]) => {
         setScrollIndicatorHidden(!entry.isIntersecting);
       },
-      { rootMargin: '-100% 0px 0px 0px' }
+      { rootMargin:   
+ '-1% 0px 0px 0px' }
     );
 
     sections.forEach(section => {
-      if (section.current) { // Pastikan section.current ada sebelum mengobservasi
+      if (section.current) {
         sectionObserver.observe(section.current);
       }
     });
 
-    if (intro.current) { // Pastikan intro.current ada sebelum mengobservasi
+    if (intro.current) {
       indicatorObserver.observe(intro.current);
     }
 
@@ -77,7 +82,7 @@ export const Home = () => {
       sectionObserver.disconnect();
       indicatorObserver.disconnect();
     };
-  }, []); // Array dependensi kosong agar useEffect hanya berjalan sekali
+  }, []);
 
   return (
     <div className={styles.home}>
@@ -89,9 +94,21 @@ export const Home = () => {
       <Profile
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
+
         id="details"
       />
-      <Footer />
+
+<Live2d 
+        modelUrl="https://api.adicw.cn/static/live2dModels/koharu/koharu.model.json" 
+        style={{ 
+          position: 'fixed', 
+          bottom: '1px', 
+          right: '10px',
+          top: '10',
+          left: '10',
+          zIndex: 4444 // Ensure Live2d is on top
+        }} 
+      />
     </div>
   );
 };
