@@ -1,5 +1,6 @@
-import { baseMeta } from '~/utils/meta'
-import { getPosts } from './posts.server'
+import { baseMeta } from '~/utils/meta';
+import { getPosts } from './posts.server';
+import { json } from '@remix-run/cloudflare';
 
 export async function loader() {
   const allPosts = await getPosts();
@@ -17,5 +18,4 @@ export function meta() {
   });
 }
 
-export { Articles as default } from './articles'
-
+export { Articles as default } from './articles';
