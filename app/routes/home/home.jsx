@@ -35,14 +35,14 @@ export const meta = () => {
 
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
-  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);   
+  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);   
 
 
   const intro = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const   
+    const   
  sections = [intro, details];
 
     const sectionObserver = new IntersectionObserver(
@@ -56,7 +56,7 @@ export const Home = () => {
           }
         });
       },
-      { rootMargin: '0px 0px -10% 0px',   
+      { rootMargin: '0px 0px -10% 0px',
  threshold: 0.1 }
     );
 
@@ -64,7 +64,7 @@ export const Home = () => {
       ([entry]) => {
         setScrollIndicatorHidden(!entry.isIntersecting);
       },
-      { rootMargin:   
+      { rootMargin:   
  '-1% 0px 0px 0px' }
     );
 
