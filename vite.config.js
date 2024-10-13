@@ -1,8 +1,8 @@
 import rehypePrism from '@mapbox/rehype-prism'
 import mdx from '@mdx-js/rollup'
-import { netlify } from '@netlify/remix-adapter'; // Import adapter Netlify
 import {
   vitePlugin as remix,
+  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from '@remix-run/dev'
 import rehypeImgSize from 'rehype-img-size'
 import rehypeSlug from 'rehype-slug'
@@ -28,16 +28,13 @@ export default defineConfig({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
       providerImportSource: '@mdx-js/react',
     }),
-    // Hapus plugin Cloudflare
-    // remixCloudflareDevProxy(),
+    remixCloudflareDevProxy(),
     remix({
       routes(defineRoutes) {
         return defineRoutes(route => {
           route('/', 'routes/home/route.js', { index: true });
         });
       },
-      // Gunakan adapter Netlify
-      adapter: netlify(), 
     }),
     jsconfigPaths(),
   ],
